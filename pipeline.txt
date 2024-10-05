@@ -1,0 +1,26 @@
+pipeline {
+    agent any;
+    
+    stages {
+        stage("Code Checkout") {
+            steps {
+                git "https://github.com/urvish91/igp1.git"
+            }
+        }
+        stage("Maven Compile") {
+            steps {
+                'mvn compile'
+            }
+        }
+        stage("Maven Test") {
+            steps {
+                'mvn test'
+            }
+        }
+        stage("Maven Package"){
+            steps {
+                'mvn package'    
+            }   
+        }
+    }
+}

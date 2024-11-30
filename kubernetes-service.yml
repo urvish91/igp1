@@ -1,0 +1,8 @@
+---
+- name: Create service for deployment
+  hosts: kubmaster
+  become: true
+
+  tasks:
+    - name: create a service
+      command: kubectl apply -f igp-service.yml

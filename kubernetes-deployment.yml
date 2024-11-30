@@ -1,0 +1,11 @@
+---
+- name: Create pod using deployment
+  hosts: kubmaster
+  become: true
+
+  tasks:
+    - name: Create a deployment
+      command: kubectl apply -f igp-deployment.yml
+
+        # - name: update deployment with new pods if image is updated on docker hub
+        #   command: rollout restart deployment.v1.apps/edureka-deployment

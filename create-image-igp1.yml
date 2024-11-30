@@ -1,0 +1,15 @@
+---
+- hosts: ansible
+  become: true
+
+  tasks:
+    - name: Create Docker Image
+      command: docker image build -t abc_technologies:v1 .
+      args:
+        chdir: opt/docker
+    
+    - name: Create tag to push image onto DockerHub
+      command: docker image tag abc_technologies:v1 urvish91/abc_technologies:v1
+
+    - name: Push docker image onto DockerHub
+      command: docker image push urvish91/abc_technologies:v1

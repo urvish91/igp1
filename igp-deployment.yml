@@ -1,0 +1,26 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: igp-deployment
+spec:
+  selector:
+    matchLabels:
+      app: igp-devops-project
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+
+  template:
+    metadata:
+      labels:
+        app: igp-devops-project
+    spec:
+      containers:
+      - name: igp-devops-project
+        image: urvish91/abc_technologies:v1  # image name that you want to push
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
